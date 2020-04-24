@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import axios from "axios";
+import {useParams, useHistory} from 'react-router-dom';
+import { axiosWithAuth } from "../utils/axiosAuth";
 
 const initialColor = {
   color: "",
   code: { hex: "" }
 };
 
-const ColorList = ({ colors, updateColors }) => {
-  console.log(colors);
+const ColorList = ({ colors, setColorList, getColorList }) => {
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const params = useParams();
+  const {push} = useHistory();
+
 
   const editColor = color => {
     setEditing(true);
@@ -19,12 +22,36 @@ const ColorList = ({ colors, updateColors }) => {
   const saveEdit = e => {
     e.preventDefault();
     // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
+    axiosWithAuth().put(`http://localhost:5000/api/colors/${params.id}`, colorToEdit)
+    .then(() => {
+      getColorList();
+      push(`/protected`);
+    })
+    .catch(error => {
+      console.log(error)
+    })
   };
 
   const deleteColor = color => {
     // make a delete request to delete this color
+      axiosWithAuth()
+        .delete(`http://localhost:5000/api/colors/${color.id}`)
+        .then((res) => {
+          console.log(colors)
+          console.log(color.id)
+          // returns a new array of bubbles with the deleted color removed
+          const newColors = colors.filter(bubble => {
+            console.log(bubble)
+           return( `${bubble.id}` !== color.id)
+          });
+          setColorList(newColors);
+
+          console.log(colors)
+        // const newItems = props.items.filter(v => `${v.id}` !== res.data)
+        // props.setItems(newItems)
+          push('/protected');
+        })
+        .catch(err => console.log(err));
   };
 
   return (
@@ -75,7 +102,7 @@ const ColorList = ({ colors, updateColors }) => {
             />
           </label>
           <div className="button-row">
-            <button type="submit">save</button>
+            <button type="submit" onClick={saveEdit}>save</button>
             <button onClick={() => setEditing(false)}>cancel</button>
           </div>
         </form>
