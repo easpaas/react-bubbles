@@ -60,8 +60,16 @@ body,
   margin-right: 36px;
 }
 
+.form-container {
+  width: 100%;
+  background-color: slategray;
+  color: burlywood;
+}
+
 form {
-  margin-top: 60px;
+  width: 50%;
+  margin: 4% auto;
+  align-items: center;
   display: flex;
   flex-direction: column;
 
@@ -81,6 +89,8 @@ form {
 
   input {
     width: 100px;
+    margin: 1.5% 0;
+
   }
 }
 
