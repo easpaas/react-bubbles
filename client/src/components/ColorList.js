@@ -113,7 +113,7 @@ const ColorList = ({ colors, updateColors }) => {
           </div>
         </form>
       )}
-      {/* ADD A NEW COLOR BUTTON TRIGGERS ADD COLOR FORM */}
+      {/* ADD COLOR BUTTON TRIGGERS ADD FORM */}
       <button onClick={() => {setAdd(true)}}>Add color</button>
       {/* IF ADD BUTTON HAS BEEN CLICKED, ADD STATE IS TRUE...SWITCH TO FALSE ON SUBMIT */}
       {add && (
@@ -128,7 +128,8 @@ const ColorList = ({ colors, updateColors }) => {
                   color: e.target.value
                 })
               }
-              value={newColor.color} />
+              />
+               {/* value={newColor.color} /> */}
           </label>
           <label htmlFor='hex'>
             Hex Code: 
@@ -140,7 +141,8 @@ const ColorList = ({ colors, updateColors }) => {
                 })
               } 
               placeholder="hex code" 
-              value={newColor.code.hex} />
+              />
+              {/* value={newColor.code.hex} /> */}
           </label>
           <button type="submit">Submit</button>
         </form>
