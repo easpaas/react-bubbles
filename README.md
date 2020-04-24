@@ -27,9 +27,20 @@ In this project you will create a login page and request a token from the server
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] Explain what a token is used for.
+
+  A token is an encrypted piece of data that used for authenticaition purposes. 
+
 - [ ] What steps can you take in your web apps to keep your data secure?
+
+  Use authentication and private routes to secure data. 
+
 - [ ] Describe how web servers work.
+
+  Web servers are used to store data that browsers need access to. Its main purpose is to “serve” web pages it retrieves from your project code to users upon request.
+
 - [ ] Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+  POST, PUT, DELETE
 
 
 ## Project Set Up
@@ -76,7 +87,7 @@ Build a login form to authenticate your users.
 
 ### API Documentation
 
-  * **[POST]** * to `/api/login`: returns a token to be added to the header of all other requests. Pass in the following credentials as the `body` of the request: `{ username: 'Lambda School', password: 'i<3Lambd4' }`
+  * **[POST]** * to `/api/login`: returns a token to be added to the header of all other requests. Pass in the following credentials as the `body` of the request: `{ username: 'user', password: 'pass' }`
   * **[GET]** to `/api/colors`: returns the list of colors and their hex codes.
   * **[POST]** to `/api/colors`: creates a new color object. Pass the color as the `body` of the request (the second argument passed to `axios.post`).
   * **[PUT]** to `/api/colors/:id`: updates the color using the `id` passed as part of the URL. Send the color object with the updated information as the `body` of the request (the second argument passed to `axios.put`).
